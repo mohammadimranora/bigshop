@@ -1,7 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\API\Auth\UserController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,3 +16,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/email/verify/{id}/{hash}', [UserController::class, 'verify'])->name('verification.verify')->middleware(['signed']);
+Route::get('/password/reset', [UserController::class, 'resetView'])->name('password.reset');
+Route::post('/password/reset', [UserController::class, 'reset'])->name('post.password.reset');

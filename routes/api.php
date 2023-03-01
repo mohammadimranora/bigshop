@@ -1,8 +1,7 @@
 <?php
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\API\Auth\UserController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -14,6 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
-    return $request->user();
+Route::prefix('user')->group(function () {
+    Route::post('register', [UserController::class, 'register'])->name('user.register');
+    Route::post('login', [UserController::class, 'login'])->name('user.login');
+    Route::get('send/email/verification/link/{user}', [UserController::class, 'sendEmailVerificationLink'])->name('user.send.email.verification.link');
+    Route::post('send/password/reset/link', [UserController::class, 'sendPasswordResetLink'])->name('user.send.password.reset.link');
 });
