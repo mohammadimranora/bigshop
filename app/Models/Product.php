@@ -18,4 +18,19 @@ class Product extends Model
         'view_count',
         'status'
     ];
+
+    public function medias()
+    {
+        return $this->hasMany('App\Models\ProductMedia', 'product_id', 'id');
+    }
+
+    public function variants()
+    {
+        return $this->hasMany('App\Models\ProductVariant', 'product_id', 'id');
+    }
+
+    public function category()
+    {
+        return $this->hasOne('App\Models\Category', 'id', 'category_id');
+    }
 }

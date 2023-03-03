@@ -13,13 +13,14 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('product_media', function (Blueprint $table) {
+        Schema::create('product_variants', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('product_id')->comment('Product Id');
-            $table->string('media')->comment('Product Media');
-            $table->enum('status', [0, 1])->comment('Status of Media');
+            $table->string('color')->comment('Product Vairant Color');
+            $table->string('size')->comment('Product Variant Size');
+            $table->float('price', 8, 2)->comment('Product Variant Price');
+            $table->unsignedInteger('stock')->comment('Stock');
             $table->timestamps();
-
             $table->foreign('product_id')->references('id')->on('products')->onDelete('cascade');
         });
     }
@@ -31,6 +32,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('product_media');
+        Schema::dropIfExists('product_variants');
     }
 };

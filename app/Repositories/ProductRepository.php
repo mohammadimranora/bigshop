@@ -4,7 +4,6 @@ namespace App\Repositories;
 
 use App\Helpers\ResponseHelper;
 use App\Interfaces\ProductRepositoryInterface;
-use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
@@ -15,7 +14,7 @@ class ProductRepository implements ProductRepositoryInterface
      */
     public function all()
     {
-        $products = Product::all();
+        $products = Product::with(['medias', 'variants', 'category'])->get();
         return ResponseHelper::success("Success", $products);
     }
 
@@ -36,7 +35,7 @@ class ProductRepository implements ProductRepositoryInterface
      */
     public function show($id)
     {
-        $product = Product::where('id', $id)->first();
+        $product = Product::with(['medias', 'variants', 'category'])->where('id', $id)->first();
         return ResponseHelper::success("Product Details", $product);
     }
 

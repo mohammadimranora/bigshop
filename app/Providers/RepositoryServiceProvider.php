@@ -11,6 +11,8 @@ use App\Interfaces\ProductRepositoryInterface;
 use App\Repositories\ProductRepository;
 use App\Interfaces\ProductMediaRepositoryInterface;
 use App\Repositories\ProductMediaRepository;
+use App\Interfaces\ProductVariantRepositoryInterface;
+use App\Repositories\ProductVariantRepository;
 
 class RepositoryServiceProvider extends ServiceProvider
 {
@@ -25,6 +27,7 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(CategoryRepositoryInterface::class, CategoryRepository::class);
         $this->app->bind(ProductRepositoryInterface::class, ProductRepository::class);
         $this->app->bind(ProductMediaRepositoryInterface::class, ProductMediaRepository::class);
+        $this->app->bind(ProductVariantRepositoryInterface::class, ProductVariantRepository::class);
     }
 
     /**

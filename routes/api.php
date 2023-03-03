@@ -5,6 +5,8 @@ use App\Http\Controllers\Api\Auth\UserController;
 use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Api\ProductController;
 use App\Http\Controllers\Api\ProductMediaController;
+use App\Http\Controllers\Api\ProductVariantController;
+
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -29,4 +31,5 @@ Route::middleware('auth:sanctum')->prefix('v1')->group(function () {
     Route::apiResource('product', ProductController::class);
     Route::get('product/view/count/{product}', [ProductController::class, 'productView']);
     Route::apiResource('media', ProductMediaController::class);
+    Route::apiResource('variant', ProductVariantController::class);
 });
