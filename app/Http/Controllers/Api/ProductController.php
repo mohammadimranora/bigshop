@@ -110,4 +110,19 @@ class ProductController extends Controller
         }
         return $this->productRepository->destroy($id);
     }
+
+    /**
+     * Raise a product view count.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function productView($id)
+    {
+        $exists = Product::where('id', $id)->exists();
+        if (!$exists) {
+            return ResponseHelper::error("Product not found!");
+        }
+        return $this->productRepository->productView($id);
+    }
 }

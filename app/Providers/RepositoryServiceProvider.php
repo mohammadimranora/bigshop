@@ -9,6 +9,8 @@ use App\Interfaces\CategoryRepositoryInterface;
 use App\Repositories\CategoryRepository;
 use App\Interfaces\ProductRepositoryInterface;
 use App\Repositories\ProductRepository;
+use App\Interfaces\ProductMediaRepositoryInterface;
+use App\Repositories\ProductMediaRepository;
 
 class RepositoryServiceProvider extends ServiceProvider
 {
@@ -22,6 +24,7 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(UserRepositoryInterface::class, UserRepository::class);
         $this->app->bind(CategoryRepositoryInterface::class, CategoryRepository::class);
         $this->app->bind(ProductRepositoryInterface::class, ProductRepository::class);
+        $this->app->bind(ProductMediaRepositoryInterface::class, ProductMediaRepository::class);
     }
 
     /**

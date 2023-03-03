@@ -65,4 +65,15 @@ class ProductRepository implements ProductRepositoryInterface
         $product->delete();
         return ResponseHelper::success('Product Deleted');
     }
+
+    /**
+     * raise a product view count
+     * @param integer $id
+     * @return Illuminate\Http\Response 
+     */
+    public function productView($id)
+    {
+        Product::find($id)->increment('view_count');
+        return ResponseHelper::success('Product View Count Raised');
+    }
 }

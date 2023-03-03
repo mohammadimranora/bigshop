@@ -4,7 +4,7 @@ namespace App\Interfaces;
 
 use Illuminate\Http\Request;
 
-interface ProductRepositoryInterface
+interface ProductMediaRepositoryInterface
 {
     /**
      * get all categories
@@ -40,11 +40,4 @@ interface ProductRepositoryInterface
      * @return Illuminate\Http\Response 
      */
     public function destroy($id);
-
-    /**
-     * raise product view count
-     * @param integer $id
-     * @return Illuminate\Http\Response 
-     */
-    public function productView($id);
 }

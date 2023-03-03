@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\Auth\UserController;
 use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Api\ProductController;
+use App\Http\Controllers\Api\ProductMediaController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -26,4 +27,6 @@ Route::prefix('v1/user')->group(function () {
 Route::middleware('auth:sanctum')->prefix('v1')->group(function () {
     Route::apiResource('category', CategoryController::class);
     Route::apiResource('product', ProductController::class);
+    Route::get('product/view/count/{product}', [ProductController::class, 'productView']);
+    Route::apiResource('media', ProductMediaController::class);
 });
