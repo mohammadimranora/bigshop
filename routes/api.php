@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\Auth\UserController;
 use App\Http\Controllers\Api\CategoryController;
+use App\Http\Controllers\Api\ProductController;
 /*
 |--------------------------------------------------------------------------
 | API Routes
@@ -24,4 +25,5 @@ Route::prefix('v1/user')->group(function () {
 
 Route::middleware('auth:sanctum')->prefix('v1')->group(function () {
     Route::apiResource('category', CategoryController::class);
+    Route::apiResource('product', ProductController::class);
 });

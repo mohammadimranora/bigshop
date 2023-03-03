@@ -25,10 +25,7 @@ class CategoryRepository implements CategoryRepositoryInterface
      */
     public function store(Request $request)
     {
-        $category = Category::create([
-            'name' => $request->name,
-            'parent_id' => $request->parent_id
-        ]);
+        $category = Category::create($request->all());
         return ResponseHelper::success('Category Created', $category, 201);
     }
 
