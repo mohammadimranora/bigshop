@@ -7,27 +7,27 @@ use Illuminate\Http\Request;
 interface ProductVariantRepositoryInterface
 {
     /**
-     * get all categories
+     * get all product variant
      * @return Illuminate\Http\Response
      */
     public function all();
 
     /**
-     * create a category
+     * create a product variant
      * @param Illuminate\Http\Request
      * @return Illuminate\Http\Response 
      */
     public function store(Request $request);
 
     /**
-     * details a category
+     * details a product variant
      * @param integer $id
      * @return Illuminate\Http\Response 
      */
     public function show($id);
 
     /**
-     * update a category
+     * update a product variant
      * @param Illuminate\Http\Request
      * @param integer $id
      * @return Illuminate\Http\Response 
@@ -35,7 +35,7 @@ interface ProductVariantRepositoryInterface
     public function update(Request $request, $id);
 
     /**
-     * destroy a category
+     * destroy a product variant
      * @param integer $id
      * @return Illuminate\Http\Response 
      */

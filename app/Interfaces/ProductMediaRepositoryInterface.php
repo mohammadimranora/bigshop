@@ -7,27 +7,27 @@ use Illuminate\Http\Request;
 interface ProductMediaRepositoryInterface
 {
     /**
-     * get all categories
+     * get all medias
      * @return Illuminate\Http\Response
      */
     public function all();
 
     /**
-     * create a category
+     * create a media
      * @param Illuminate\Http\Request
      * @return Illuminate\Http\Response 
      */
     public function store(Request $request);
 
     /**
-     * details a category
+     * details a media
      * @param integer $id
      * @return Illuminate\Http\Response 
      */
     public function show($id);
 
     /**
-     * update a category
+     * update a media
      * @param Illuminate\Http\Request
      * @param integer $id
      * @return Illuminate\Http\Response 
@@ -35,7 +35,7 @@ interface ProductMediaRepositoryInterface
     public function update(Request $request, $id);
 
     /**
-     * destroy a category
+     * destroy a media
      * @param integer $id
      * @return Illuminate\Http\Response 
      */

@@ -13,6 +13,8 @@ use App\Interfaces\ProductMediaRepositoryInterface;
 use App\Repositories\ProductMediaRepository;
 use App\Interfaces\ProductVariantRepositoryInterface;
 use App\Repositories\ProductVariantRepository;
+use App\Interfaces\WishlistRepositoryInterface;
+use App\Repositories\WishlistRepository;
 
 class RepositoryServiceProvider extends ServiceProvider
 {
@@ -28,6 +30,7 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(ProductRepositoryInterface::class, ProductRepository::class);
         $this->app->bind(ProductMediaRepositoryInterface::class, ProductMediaRepository::class);
         $this->app->bind(ProductVariantRepositoryInterface::class, ProductVariantRepository::class);
+        $this->app->bind(WishlistRepositoryInterface::class, WishlistRepository::class);
     }
 
     /**

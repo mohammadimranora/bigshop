@@ -20,7 +20,7 @@ class ProductMediaRepository implements ProductMediaRepositoryInterface
     }
 
     /**
-     * create a product
+     * create a product media
      * @param Illuminate\Http\Request
      * @return Illuminate\Http\Response
      */
@@ -49,7 +49,7 @@ class ProductMediaRepository implements ProductMediaRepositoryInterface
     }
 
     /**
-     * update a product
+     * update a product media
      * @param Illuminate\Http\Request
      * @param integer $id
      * @return Illuminate\Http\Response 
@@ -75,7 +75,7 @@ class ProductMediaRepository implements ProductMediaRepositoryInterface
     }
 
     /**
-     * destroy a product
+     * destroy a product media
      * @param integer $id
      * @return Illuminate\Http\Response 
      */

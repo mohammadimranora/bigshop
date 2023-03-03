@@ -3,11 +3,11 @@
 namespace App\Repositories;
 
 use App\Helpers\ResponseHelper;
-use App\Interfaces\CategoryRepositoryInterface;
+use App\Interfaces\WishlistRepositoryInterface;
 use App\Models\Category;
 use Illuminate\Http\Request;
 
-class CategoryRepository implements CategoryRepositoryInterface
+class WishlistRepository implements WishlistRepositoryInterface
 {
     /**
      * @return Illuminate\Http\Response
@@ -19,7 +19,7 @@ class CategoryRepository implements CategoryRepositoryInterface
     }
 
     /**
-     * create a category
+     * create a wishlist
      * @param Illuminate\Http\Request
      * @return Illuminate\Http\Response
      */
@@ -40,7 +40,7 @@ class CategoryRepository implements CategoryRepositoryInterface
     }
 
     /**
-     * update a category
+     * update a wishlist
      * @param Illuminate\Http\Request
      * @param integer $id
      * @return Illuminate\Http\Response 
@@ -54,7 +54,7 @@ class CategoryRepository implements CategoryRepositoryInterface
     }
 
     /**
-     * destroy a category
+     * destroy a wishlist
      * @param integer $id
      * @return Illuminate\Http\Response 
      */
