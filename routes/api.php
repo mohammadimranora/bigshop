@@ -6,6 +6,7 @@ use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Api\ProductController;
 use App\Http\Controllers\Api\ProductMediaController;
 use App\Http\Controllers\Api\ProductVariantController;
+use App\Http\Controllers\Api\WishlistController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,4 +33,5 @@ Route::middleware('auth:sanctum')->prefix('v1')->group(function () {
     Route::get('product/view/count/{product}', [ProductController::class, 'productView']);
     Route::apiResource('media', ProductMediaController::class);
     Route::apiResource('variant', ProductVariantController::class);
+    Route::apiResource('wishlist', WishlistController::class);
 });

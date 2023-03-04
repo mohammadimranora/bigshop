@@ -4,7 +4,7 @@ namespace App\Repositories;
 
 use App\Helpers\ResponseHelper;
 use App\Interfaces\WishlistRepositoryInterface;
-use App\Models\Category;
+use App\Models\Wishlist;
 use Illuminate\Http\Request;
 
 class WishlistRepository implements WishlistRepositoryInterface
@@ -14,8 +14,8 @@ class WishlistRepository implements WishlistRepositoryInterface
      */
     public function all()
     {
-        $categories = Category::with(['parent', 'children'])->get();
-        return ResponseHelper::success("Success", $categories);
+        $wishlist = Wishlist::all();
+        return ResponseHelper::success("Success", $wishlist);
     }
 
     /**
@@ -25,8 +25,12 @@ class WishlistRepository implements WishlistRepositoryInterface
      */
     public function store(Request $request)
     {
-        $category = Category::create($request->all());
-        return ResponseHelper::success('Category Created', $category, 201);
+        $wishlist = Wishlist::where($request->all())->exists();
+        if ($wishlist) {
+            return ResponseHelper::success('Wishlist Item Already Existed');
+        }
+        $wishlist = Wishlist::create($request->all());
+        return ResponseHelper::success('Wishlist Item Created', $wishlist, 201);
     }
 
     /**
@@ -35,8 +39,8 @@ class WishlistRepository implements WishlistRepositoryInterface
      */
     public function show($id)
     {
-        $category = Category::where('id', $id)->with(['parent', 'children'])->first();
-        return ResponseHelper::success("Category Details", $category);
+        $wishlist = Wishlist::find($id);
+        return ResponseHelper::success("Wishlist Item Details", $wishlist);
     }
 
     /**
@@ -47,10 +51,10 @@ class WishlistRepository implements WishlistRepositoryInterface
      */
     public function update(Request $request, $id)
     {
-        $category = Category::where('id', $id)->with(['parent', 'children'])->first();
-        $category->update($request->all());
-        $category->save();
-        return ResponseHelper::success("Category Updated", $category);
+        $wishlist = Wishlist::find($id);
+        $wishlist->update($request->all());
+        $wishlist->save();
+        return ResponseHelper::success("Wishlist Item Updated", $wishlist);
     }
 
     /**
@@ -60,8 +64,8 @@ class WishlistRepository implements WishlistRepositoryInterface
      */
     public function destroy($id)
     {
-        $category = Category::where('id', $id)->first();
-        $category->delete();
-        return ResponseHelper::success('Category Deleted');
+        $wishlist = Wishlist::where('id', $id)->first();
+        $wishlist->delete();
+        return ResponseHelper::success('Wishlist Item Deleted');
     }
 }
