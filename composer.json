@@ -35,7 +35,8 @@
             "Tests\\": "tests/"
         },
         "files": [
-            "app\\Helpers\\ResponseHelper.php"
+            "app\\Helpers\\ResponseHelper.php",
+            "app\\Helpers\\OrderHelper.php"
         ]
     },
     "scripts": {

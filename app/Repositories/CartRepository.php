@@ -70,7 +70,7 @@ class CartRepository implements CartRepositoryInterface
     }
 
     /**
-     * destroy a cart
+     * get cart item by user
      * @param integer $id
      * @return Illuminate\Http\Response 
      */
