@@ -14,7 +14,7 @@ class WishlistRepository implements WishlistRepositoryInterface
      */
     public function all()
     {
-        $wishlist = Wishlist::all();
+        $wishlist = Wishlist::with(['user', 'product', 'variant'])->get();
         return ResponseHelper::success("Success", $wishlist);
     }
 
@@ -39,7 +39,7 @@ class WishlistRepository implements WishlistRepositoryInterface
      */
     public function show($id)
     {
-        $wishlist = Wishlist::find($id);
+        $wishlist = Wishlist::with(['user', 'product', 'variant'])->where('id', $id)->get();
         return ResponseHelper::success("Wishlist Item Details", $wishlist);
     }
 
@@ -67,5 +67,16 @@ class WishlistRepository implements WishlistRepositoryInterface
         $wishlist = Wishlist::where('id', $id)->first();
         $wishlist->delete();
         return ResponseHelper::success('Wishlist Item Deleted');
+    }
+
+    /**
+     * destroy a wishlist
+     * @param integer $id
+     * @return Illuminate\Http\Response 
+     */
+    public function getWishlistItemsByUser($id)
+    {
+        $wishlists = Wishlist::with(['user', 'product', 'variant'])->where('user_id', $id)->get();
+        return ResponseHelper::success('Wishlist Items', $wishlists);
     }
 }

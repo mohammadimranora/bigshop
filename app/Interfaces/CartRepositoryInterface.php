@@ -4,7 +4,7 @@ namespace App\Interfaces;
 
 use Illuminate\Http\Request;
 
-interface WishlistRepositoryInterface
+interface CartRepositoryInterface
 {
     /**
      * get all wishlists
@@ -42,9 +42,9 @@ interface WishlistRepositoryInterface
     public function destroy($id);
 
     /**
-     * get wishlist items by user
+     * get cart items by user
      * @param integer $id
      * @return Illuminate\Http\Response 
      */
-    public function getWishlistItemsByUser($id);
+    public function getCartItemsByUser($id);
 }

@@ -4,19 +4,19 @@ namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Interfaces\WishlistRepositoryInterface;
-use Illuminate\Support\Facades\Validator;
+use App\Interfaces\CartRepositoryInterface;
 use App\Helpers\ResponseHelper;
+use App\Models\Cart;
 use App\Models\User;
-use App\Models\Wishlist;
+use Illuminate\Support\Facades\Validator;
 
-class WishlistController extends Controller
+class CartController extends Controller
 {
-    private WishlistRepositoryInterface $wishlistRepository;
+    private CartRepositoryInterface $cartRepository;
 
-    public function __construct(WishlistRepositoryInterface $wishlistRepository)
+    public function __construct(CartRepositoryInterface $cartRepository)
     {
-        $this->wishlistRepository = $wishlistRepository;
+        $this->cartRepository = $cartRepository;
     }
 
     /**
@@ -26,7 +26,7 @@ class WishlistController extends Controller
      */
     public function index()
     {
-        return $this->wishlistRepository->all();
+        return $this->cartRepository->all();
     }
 
     /**
@@ -40,14 +40,16 @@ class WishlistController extends Controller
         $validator = Validator::make($request->all(), [
             'user_id' => 'required|exists:users,id',
             'product_id' => 'required|exists:products,id',
-            'variant_id' => 'required|exists:product_variants,id'
+            'variant_id' => 'required|exists:product_variants,id',
+            'price' => 'required|numeric|between:0,9999999999.99',
+            'quantity' => 'required|numeric|between:0,9999999999',
         ]);
 
         if ($validator->fails()) {
             return ResponseHelper::error('Validation Error', 400, $validator->errors());
         }
 
-        return $this->wishlistRepository->store($request);
+        return $this->cartRepository->store($request);
     }
 
     /**
@@ -58,11 +60,11 @@ class WishlistController extends Controller
      */
     public function show($id)
     {
-        $exists = Wishlist::where('id', $id)->exists();
+        $exists = Cart::where('id', $id)->exists();
         if (!$exists) {
-            return ResponseHelper::error("Wishlist Item not found!");
+            return ResponseHelper::error("Cart Item not found!");
         }
-        return $this->wishlistRepository->show($id);
+        return $this->cartRepository->show($id);
     }
 
     /**
@@ -74,22 +76,24 @@ class WishlistController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $exists = Wishlist::where('id', $id)->exists();
+        $exists = Cart::where('id', $id)->exists();
         if (!$exists) {
-            return ResponseHelper::error("Wishlist Item not found!");
+            return ResponseHelper::error("Cart Item not found!");
         }
 
         $validator = Validator::make($request->all(), [
             'user_id' => 'required|exists:users,id',
             'product_id' => 'required|exists:products,id',
-            'variant_id' => 'required|exists:product_variants,id'
+            'variant_id' => 'required|exists:product_variants,id',
+            'price' => 'required|numeric|between:0,9999999999.99',
+            'quantity' => 'required|numeric|between:0,9999999999',
         ]);
 
         if ($validator->fails()) {
             return ResponseHelper::error('Validation Error', 400, $validator->errors());
         }
 
-        return $this->wishlistRepository->update($request, $id);
+        return $this->cartRepository->update($request, $id);
     }
 
     /**
@@ -100,11 +104,11 @@ class WishlistController extends Controller
      */
     public function destroy($id)
     {
-        $exists = Wishlist::where('id', $id)->exists();
+        $exists = Cart::where('id', $id)->exists();
         if (!$exists) {
-            return ResponseHelper::error("Wishlist Item not found!");
+            return ResponseHelper::error("Cart Item not found!");
         }
-        return $this->wishlistRepository->destroy($id);
+        return $this->cartRepository->destroy($id);
     }
 
     /**
@@ -112,13 +116,13 @@ class WishlistController extends Controller
      * @param int $id
      * @return \Illuminate\Http\Response
      */
-    public function getWishlistItemsByUser($id)
+    public function getCartItemsByUser($id)
     {
         $exists = User::where('id', $id)->exists();
         if (!$exists) {
             return ResponseHelper::error("User not found!");
         }
 
-        return $this->wishlistRepository->getWishlistItemsByUser($id);
+        return $this->cartRepository->getCartItemsByUser($id);
     }
 }

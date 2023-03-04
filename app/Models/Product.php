@@ -19,6 +19,8 @@ class Product extends Model
         'status'
     ];
 
+    protected $with = ['medias'];
+
     public function medias()
     {
         return $this->hasMany('App\Models\ProductMedia', 'product_id', 'id');

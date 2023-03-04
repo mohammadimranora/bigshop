@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\Auth\UserController;
+use App\Http\Controllers\Api\CartController;
 use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Api\ProductController;
 use App\Http\Controllers\Api\ProductMediaController;
@@ -34,4 +35,7 @@ Route::middleware('auth:sanctum')->prefix('v1')->group(function () {
     Route::apiResource('media', ProductMediaController::class);
     Route::apiResource('variant', ProductVariantController::class);
     Route::apiResource('wishlist', WishlistController::class);
+    Route::get('wishlist/by/user/{user}', [WishlistController::class, 'getWishlistItemsByUser']);
+    Route::apiResource('cart', CartController::class);
+    Route::get('cart/by/user/{user}', [CartController::class, 'getCartItemsByUser']);
 });
