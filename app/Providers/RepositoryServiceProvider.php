@@ -19,6 +19,8 @@ use App\Interfaces\CartRepositoryInterface;
 use App\Repositories\CartRepository;
 use App\Interfaces\OrderRepositoryInterface;
 use App\Repositories\OrderRepository;
+use App\Interfaces\OrderItemRepositoryInterface;
+use App\Repositories\OrderItemRepository;
 
 class RepositoryServiceProvider extends ServiceProvider
 {
@@ -37,6 +39,7 @@ class RepositoryServiceProvider extends ServiceProvider
         $this->app->bind(WishlistRepositoryInterface::class, WishlistRepository::class);
         $this->app->bind(CartRepositoryInterface::class, CartRepository::class);
         $this->app->bind(OrderRepositoryInterface::class, OrderRepository::class);
+        $this->app->bind(OrderItemRepositoryInterface::class, OrderItemRepository::class);
     }
 
     /**
